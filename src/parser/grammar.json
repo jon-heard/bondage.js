@@ -2,14 +2,14 @@
   "operators": [
     [ "left", "Comma" ],
     [ "left", "EqualToOrAssign", "AddAssign", "MinusAssign", "MultiplyAssign", "DivideAssign" ],
-    [ "left", "Not" ],
     [ "left", "Or" ],
     [ "left", "And" ],
     [ "left", "Xor" ],
     [ "left", "EqualTo", "GreaterThan", "GreaterThanOrEqualTo", "LessThan", "LessThanOrEqualTo", "NotEqualTo" ],
     [ "left", "Add", "Minus" ],
-    [ "left", "Multiply", "Exponent", "Divide" ],
-    [ "left", "UnaryMinus" ],
+    [ "left", "Multiply", "Divide", "Modulo" ],
+    [ "right", "Exponent" ],
+    [ "right", "Not", "UnaryMinus" ],
     [ "left", "LeftParen", "RightParen" ]
   ],
   "start": [ "node" ],
