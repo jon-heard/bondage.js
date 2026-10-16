@@ -89,7 +89,7 @@ class Lexer {
 
   advanceLine() {
     this.yylineno += 1;
-    const currentLine = this.getCurrentLine().replace(/\t/, '    ');
+    const currentLine = this.getCurrentLine().replace(/\t/g, '    ');
     this.lines[this.yylineno - 1] = currentLine;
     this.previousLevelOfIndentation = this.getLastRecordedIndentation()[0];
     this.yytext = '';
@@ -103,30 +103,28 @@ class Lexer {
 
   lexNextTokenOnCurrentLine() {
     const thisIndentation = this.getCurrentLineIndentation();
+    const atLineStart = this.yylloc.last_column === 1;
 
-    if (this.shouldTrackNextIndentation &&
-      thisIndentation > this.previousLevelOfIndentation) {
+    if (atLineStart && this.shouldTrackNextIndentation
+        && thisIndentation > this.previousLevelOfIndentation) {
       this.indentation.push([thisIndentation, true]);
       this.shouldTrackNextIndentation = false;
-
       this.yylloc.first_column = this.yylloc.last_column;
       this.yylloc.last_column += thisIndentation;
       this.yytext = '';
-
       return 'Indent';
     } else if (thisIndentation < this.getLastRecordedIndentation()[0]) {
       const indent = this.indentation.pop();
+      this.previousLevelOfIndentation = this.getLastRecordedIndentation()[0];
       if (indent[1]) {
         this.yytext = '';
-        this.previousLevelOfIndentation = this.getLastRecordedIndentation()[0];
-
         return 'Dedent';
       }
-
-      this.lexNextTokenOnCurrentLine();
+      return this.lexNextTokenOnCurrentLine();
     }
 
-    if (thisIndentation === this.previousLevelOfIndentation && this.yylloc.last_column === 1) {
+    // Always skip a line's leading whitespace once, at the start of the line
+    if (atLineStart) {
       this.yylloc.last_column += thisIndentation;
     }
 
