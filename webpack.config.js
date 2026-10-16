@@ -19,7 +19,7 @@ const common = {
             ['@babel/preset-env',
               {
                 modules: 'cjs',
-                targets: 'last 4 years',
+                targets: { esmodules: true },
               },
             ],
           ],
