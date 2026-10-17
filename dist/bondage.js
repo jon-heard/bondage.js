@@ -12,8 +12,8 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 442:
-/***/ ((module, exports) => {
+/***/ 442
+(module, exports) {
 
 
 
@@ -21,6 +21,12 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = convertYarnToJS;
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 /* eslint-disable */
 /*
 Yoinked from YarnEditor source and modified to limit size and scope:
@@ -45,19 +51,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 /* eslint-enable */
 
 function convertYarnToJS(content) {
-  const objects = [];
-  const lines = content.split(/\r?\n+/).filter(line => {
+  var objects = [];
+  var lines = content.split(/\r?\n+/).filter(line => {
     return !line.match(/^\s*$/);
   });
-  let obj = null;
-  let readingBody = false;
-  let filetags;
+  var obj = null;
+  var readingBody = false;
+  var filetags;
 
   // per-node, we will uniformly strip leading space
   // which can result from constructing dialogues
   // using template strings.
-  let leadingSpace = '';
-  let i = 0;
+  var leadingSpace = '';
+  var i = 0;
   while (lines[i].trim()[0] === '#') {
     if (!filetags) filetags = [];
     filetags.push(lines[i].trim().substr(1));
@@ -70,19 +76,22 @@ function convertYarnToJS(content) {
       objects.push(obj);
       obj = null;
     } else if (readingBody) {
-      obj.body += `${lines[i].replace(leadingSpace, '')}\n`;
+      obj.body += "".concat(lines[i].replace(leadingSpace, ''), "\n");
     } else if (lines[i].trim() === '---') {
       readingBody = true;
       obj.body = '';
       leadingSpace = lines[i].match(/^\s*/)[0];
     } else if (lines[i].indexOf(':') > -1) {
-      const [key, value] = lines[i].split(':');
-      const trimmedKey = key.trim();
-      const trimmedValue = value.trim();
+      var _lines$i$split = lines[i].split(':'),
+        _lines$i$split2 = _slicedToArray(_lines$i$split, 2),
+        key = _lines$i$split2[0],
+        value = _lines$i$split2[1];
+      var trimmedKey = key.trim();
+      var trimmedValue = value.trim();
       if (trimmedKey !== 'body') {
         if (obj == null) obj = {};
         if (obj[trimmedKey]) {
-          throw new Error(`Duplicate tag on node: ${trimmedKey}`);
+          throw new Error("Duplicate tag on node: ".concat(trimmedKey));
         }
         obj[trimmedKey] = trimmedValue;
       }
@@ -92,10 +101,10 @@ function convertYarnToJS(content) {
 }
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 696:
-/***/ ((module, exports) => {
+/***/ 696
+(module, exports) {
 
 
 
@@ -119,10 +128,10 @@ class DefaultVariableStorage {
 var _default = exports["default"] = DefaultVariableStorage;
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 954:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 954
+(module, exports, __webpack_require__) {
 
 
 
@@ -132,17 +141,17 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _runner = _interopRequireDefault(__webpack_require__(458));
 var _results = _interopRequireDefault(__webpack_require__(528));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 _runner.default.OptionsResult = _results.default.OptionsResult;
 _runner.default.TextResult = _results.default.TextResult;
 _runner.default.CommandResult = _results.default.CommandResult;
 var _default = exports["default"] = _runner.default;
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 105:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 105
+(module, exports, __webpack_require__) {
 
 
 
@@ -151,7 +160,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _tokens = _interopRequireDefault(__webpack_require__(170));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * A LexState object represents one of the states in which the lexer can be.
  */
@@ -204,16 +213,16 @@ class LexerState {
 
     // Go through the regex of the other transitions in this state, and create a regex that will
     // match all text, up to any of those transitions.
-    const rules = [];
+    var rules = [];
     this.transitions.forEach(transition => {
       if (transition.delimitsText) {
         // Surround the rule in parens
-        rules.push(`(${transition.regex.source})`);
+        rules.push("(".concat(transition.regex.source, ")"));
       }
     });
 
     // Join the rules that we got above on a |, then put them all into a negative lookahead.
-    const textPattern = `((?!${rules.join('|')}).)+`;
+    var textPattern = "((?!".concat(rules.join('|'), ").)+");
     this.addTransition(type, state);
 
     // Update the regex in the transition we just added to our new one.
@@ -236,10 +245,10 @@ class LexerState {
 var _default = exports["default"] = LexerState;
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 101:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 101
+(module, exports, __webpack_require__) {
 
 
 
@@ -250,7 +259,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _states = _interopRequireDefault(__webpack_require__(789));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 // As opposed to the original C# implemntation which, tokenize the entire input, before emiting
 // a list of tokens, this parser will emit a token each time `lex()` is called. This change
 // accomodates the Jison parser. Given the lexer is not entirely context-free
@@ -318,7 +327,7 @@ class Lexer {
 
       // Now that we're at the end of the text, we'll emit as many
       // `Dedent` as necessary, to get back to 0-indentation.
-      const indent = this.indentation.pop();
+      var indent = this.indentation.pop();
       if (indent && indent[1]) {
         return 'Dedent';
       }
@@ -333,7 +342,7 @@ class Lexer {
   }
   advanceLine() {
     this.yylineno += 1;
-    const currentLine = this.getCurrentLine().replace(/\t/, '    ');
+    var currentLine = this.getCurrentLine().replace(/\t/g, '    ');
     this.lines[this.yylineno - 1] = currentLine;
     this.previousLevelOfIndentation = this.getLastRecordedIndentation()[0];
     this.yytext = '';
@@ -345,8 +354,9 @@ class Lexer {
     };
   }
   lexNextTokenOnCurrentLine() {
-    const thisIndentation = this.getCurrentLineIndentation();
-    if (this.shouldTrackNextIndentation && thisIndentation > this.previousLevelOfIndentation) {
+    var thisIndentation = this.getCurrentLineIndentation();
+    var atLineStart = this.yylloc.last_column === 1;
+    if (atLineStart && this.shouldTrackNextIndentation && thisIndentation > this.previousLevelOfIndentation) {
       this.indentation.push([thisIndentation, true]);
       this.shouldTrackNextIndentation = false;
       this.yylloc.first_column = this.yylloc.last_column;
@@ -354,26 +364,28 @@ class Lexer {
       this.yytext = '';
       return 'Indent';
     } else if (thisIndentation < this.getLastRecordedIndentation()[0]) {
-      const indent = this.indentation.pop();
+      var indent = this.indentation.pop();
+      this.previousLevelOfIndentation = this.getLastRecordedIndentation()[0];
       if (indent[1]) {
         this.yytext = '';
-        this.previousLevelOfIndentation = this.getLastRecordedIndentation()[0];
         return 'Dedent';
       }
-      this.lexNextTokenOnCurrentLine();
+      return this.lexNextTokenOnCurrentLine();
     }
-    if (thisIndentation === this.previousLevelOfIndentation && this.yylloc.last_column === 1) {
+
+    // Always skip a line's leading whitespace once, at the start of the line
+    if (atLineStart) {
       this.yylloc.last_column += thisIndentation;
     }
-    const rules = this.getState().transitions;
-    for (let i = 0, len = rules.length; i < len; i += 1) {
-      const rule = rules[i];
-      const match = this.getCurrentLine().substring(this.yylloc.last_column - 1).match(rule.regex);
+    var rules = this.getState().transitions;
+    for (var i = 0, len = rules.length; i < len; i += 1) {
+      var rule = rules[i];
+      var match = this.getCurrentLine().substring(this.yylloc.last_column - 1).match(rule.regex);
 
       // Only accept valid matches that are at the beginning of the text
       if (match !== null && match.index === 0) {
         // Take the matched text off the front of this.text
-        const matchedText = match[0];
+        var matchedText = match[0];
 
         // Tell the parser what the text for this token is
         this.yytext = this.getCurrentLine().substr(this.yylloc.last_column - 1, matchedText.length);
@@ -395,8 +407,8 @@ class Lexer {
             }
           }
         }
-        const nextState = this.states[rule.state];
-        const nextStateHasText = !rule.state || nextState.transitions.find(transition => {
+        var nextState = this.states[rule.state];
+        var nextStateHasText = !rule.state || nextState.transitions.find(transition => {
           return transition.token === 'Text';
         });
         // inline expressions and escaped characters interrupt text
@@ -404,7 +416,7 @@ class Lexer {
         if (rule.token !== 'EndInlineExp' && rule.token !== 'EscapedCharacter' || !nextStateHasText // we never want leading whitespace if not in text-supporting state
         ) {
           // Remove leading whitespace characters
-          const spaceMatch = this.getCurrentLine().substring(this.yylloc.last_column - 1).match(/^\s*/);
+          var spaceMatch = this.getCurrentLine().substring(this.yylloc.last_column - 1).match(/^\s*/);
           if (spaceMatch[0]) {
             this.yylloc.last_column += spaceMatch[0].length;
           }
@@ -412,7 +424,7 @@ class Lexer {
         return rule.token;
       }
     }
-    throw new Error(`Invalid syntax in: ${this.getCurrentLine()}`);
+    throw new Error("Invalid syntax in: ".concat(this.getCurrentLine()));
   }
 
   // /////////////// Getters & Setters
@@ -424,7 +436,7 @@ class Lexer {
    */
   setState(state) {
     if (this.states[state] === undefined) {
-      throw new Error(`Cannot set the unknown state [${state}]`);
+      throw new Error("Cannot set the unknown state [".concat(state, "]"));
     }
     this.state = state;
     if (this.getState().isTrackingNextIndentation) {
@@ -458,7 +470,7 @@ class Lexer {
     return this.lines[this.yylineno - 1];
   }
   getCurrentLineIndentation() {
-    const match = this.getCurrentLine().match(/^(\s*)/g);
+    var match = this.getCurrentLine().match(/^(\s*)/g);
     return match[0].length;
   }
   getLastRecordedIndentation() {
@@ -486,10 +498,10 @@ class Lexer {
 var _default = exports["default"] = Lexer;
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 789:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 789
+(module, exports, __webpack_require__) {
 
 
 
@@ -498,7 +510,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _lexerState = _interopRequireDefault(__webpack_require__(105));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 /**
  * @return {Object}  all states in which the lexer can be with their associated transitions.
  */
@@ -529,10 +541,10 @@ var _default = exports["default"] = {
 };
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 170:
-/***/ ((module, exports) => {
+/***/ 170
+(module, exports) {
 
 
 
@@ -546,7 +558,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-const Tokens = {
+var Tokens = {
   // Special tokens
   Whitespace: null,
   // (not used currently)
@@ -669,10 +681,10 @@ const Tokens = {
 var _default = exports["default"] = Tokens;
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 293:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ 293
+(__unused_webpack_module, exports) {
 
 
 
@@ -681,9 +693,14 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports.Parser = Parser;
 exports.parser = void 0;
-var o = function (k, v, o, l) {
-    for (o = o || {}, l = k.length; l--; o[k[l]] = v);
-    return o;
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, e) { if ("object" != typeof t || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
+var o = function o(k, v, _o, l) {
+    for (_o = _o || {}, l = k.length; l--; _o[k[l]] = v);
+    return _o;
   },
   $V0 = [1, 16],
   $V1 = [1, 17],
@@ -729,14 +746,13 @@ var o = function (k, v, o, l) {
   $VF = [1, 84],
   $VG = [1, 85],
   $VH = [26, 46, 51, 53, 54, 55, 56, 57, 58, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
-  $VI = [26, 46, 51, 53, 54, 55, 56, 57, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
-  $VJ = [26, 46, 51, 70, 78],
-  $VK = [1, 122],
-  $VL = [1, 123],
-  $VM = [26, 46, 51, 53, 54, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
-  $VN = [26, 46, 51, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
-  $VO = [51, 70],
-  $VP = [16, 18, 19, 23, 34, 77];
+  $VI = [1, 122],
+  $VJ = [1, 123],
+  $VK = [26, 46, 51, 53, 54, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
+  $VL = [26, 46, 51, 53, 54, 56, 57, 58, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
+  $VM = [26, 46, 51, 60, 61, 62, 63, 64, 65, 66, 67, 68, 70, 78],
+  $VN = [51, 70],
+  $VO = [16, 18, 19, 23, 34, 77];
 var parser = exports.parser = {
   trace: function trace() {},
   yy: {},
@@ -883,7 +899,8 @@ var parser = exports.parser = {
     switch (yystate) {
       case 1:
         return $$[$0 - 1].flat();
-        break;
+        // removed by dead control flow
+
       case 2:
       case 4:
       case 7:
@@ -971,16 +988,14 @@ var parser = exports.parser = {
         };
         break;
       case 35:
-        this.$ = {
-          ...$$[$0 - 1],
+        this.$ = _objectSpread(_objectSpread({}, $$[$0 - 1]), {}, {
           hashtags: $$[$0]
-        };
+        });
         break;
       case 37:
-        this.$ = {
-          ...$$[$0 - 2],
+        this.$ = _objectSpread(_objectSpread({}, $$[$0 - 2]), {}, {
           hashtags: $$[$0 - 1]
-        };
+        });
         break;
       case 39:
         this.$ = new yy.DialogShortcutNode($$[$0].text, undefined, this._$, $$[$0].hashtags, $$[$0].conditional);
@@ -1695,25 +1710,7 @@ var parser = exports.parser = {
     66: $VE,
     67: $VF,
     68: $VG
-  }, o($VI, [2, 53], {
-    58: $Vx
-  }), o($VJ, [2, 60], {
-    53: $Vs,
-    54: $Vt,
-    55: $Vu,
-    56: $Vv,
-    57: $Vw,
-    58: $Vx,
-    60: $Vy,
-    61: $Vz,
-    62: $VA,
-    63: $VB,
-    64: $VC,
-    65: $VD,
-    66: $VE,
-    67: $VF,
-    68: $VG
-  }), {
+  }, o($VH, [2, 53]), o($VH, [2, 60]), {
     20: 47,
     25: 120,
     38: $Vh,
@@ -1742,8 +1739,8 @@ var parser = exports.parser = {
     20: 14,
     24: $Vb,
     27: [1, 121],
-    30: $VK,
-    32: $VL,
+    30: $VI,
+    32: $VJ,
     37: $Vc,
     39: $Vd,
     40: 32,
@@ -1844,38 +1841,24 @@ var parser = exports.parser = {
     34: $V3,
     36: [1, 130],
     77: $V4
-  }, o($VM, [2, 54], {
+  }, o($VK, [2, 54], {
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VM, [2, 55], {
+  }), o($VK, [2, 55], {
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VI, [2, 56], {
-    58: $Vx
-  }), o($VI, [2, 57], {
-    58: $Vx
-  }), o($VI, [2, 58], {
-    58: $Vx
-  }), o($VJ, [2, 59], {
-    53: $Vs,
-    54: $Vt,
-    55: $Vu,
-    56: $Vv,
-    57: $Vw,
-    58: $Vx,
-    60: $Vy,
-    61: $Vz,
-    62: $VA,
-    63: $VB,
-    64: $VC,
-    65: $VD,
-    66: $VE,
-    67: $VF,
-    68: $VG
+  }), o($VL, [2, 56], {
+    55: $Vu
+  }), o($VL, [2, 57], {
+    55: $Vu
+  }), o($VL, [2, 58], {
+    55: $Vu
+  }), o($VL, [2, 59], {
+    55: $Vu
   }), o([26, 46, 51, 60, 70, 78], [2, 61], {
     53: $Vs,
     54: $Vt,
@@ -1918,42 +1901,42 @@ var parser = exports.parser = {
     66: $VE,
     67: $VF,
     68: $VG
-  }), o($VN, [2, 64], {
+  }), o($VM, [2, 64], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VN, [2, 65], {
+  }), o($VM, [2, 65], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VN, [2, 66], {
+  }), o($VM, [2, 66], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VN, [2, 67], {
+  }), o($VM, [2, 67], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VN, [2, 68], {
+  }), o($VM, [2, 68], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
     56: $Vv,
     57: $Vw,
     58: $Vx
-  }), o($VN, [2, 69], {
+  }), o($VM, [2, 69], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
@@ -1963,7 +1946,7 @@ var parser = exports.parser = {
   }), o($VH, [2, 52]), o($VH, [2, 70]), {
     51: [1, 131],
     70: [1, 132]
-  }, o($VO, [2, 73], {
+  }, o($VN, [2, 73], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
@@ -2018,7 +2001,7 @@ var parser = exports.parser = {
     33: 15,
     34: $V3,
     77: $V4
-  }, o($VP, [2, 27]), {
+  }, o($VO, [2, 27]), {
     6: 21,
     7: 22,
     8: 6,
@@ -2039,7 +2022,7 @@ var parser = exports.parser = {
     33: 15,
     34: $V3,
     77: $V4
-  }, o($VP, [2, 29]), {
+  }, o($VO, [2, 29]), {
     26: [2, 47],
     53: $Vs,
     54: $Vt,
@@ -2091,7 +2074,7 @@ var parser = exports.parser = {
     75: $Vp,
     76: $Vq,
     77: $V4
-  }, o($Vr, [2, 23]), o($VP, [2, 26]), {
+  }, o($Vr, [2, 23]), o($VO, [2, 26]), {
     26: [1, 141],
     53: $Vs,
     54: $Vt,
@@ -2131,8 +2114,8 @@ var parser = exports.parser = {
     20: 14,
     24: $Vb,
     27: [1, 143],
-    30: $VK,
-    32: $VL,
+    30: $VI,
+    32: $VJ,
     37: $Vc,
     39: $Vd,
     40: 32,
@@ -2142,7 +2125,7 @@ var parser = exports.parser = {
     77: $V4
   }, o($Vr, [2, 32]), {
     47: [1, 144]
-  }, o($VO, [2, 72], {
+  }, o($VN, [2, 72], {
     53: $Vs,
     54: $Vt,
     55: $Vu,
@@ -2158,7 +2141,7 @@ var parser = exports.parser = {
     66: $VE,
     67: $VF,
     68: $VG
-  }), o($VP, [2, 28]), {
+  }), o($VO, [2, 28]), {
     26: [1, 145]
   }, {
     26: [1, 146]
@@ -2220,7 +2203,7 @@ var parser = exports.parser = {
       vstack.length = vstack.length - n;
       lstack.length = lstack.length - n;
     }
-    _token_stack: var lex = function () {
+    _token_stack: var lex = function lex() {
       var token;
       token = lexer.lex() || EOF;
       if (typeof token !== 'number') {
@@ -2334,10 +2317,10 @@ function Parser() {
 Parser.prototype = parser;
 parser.Parser = Parser;
 
-/***/ }),
+/***/ },
 
-/***/ 33:
-/***/ ((module, exports) => {
+/***/ 33
+(module, exports) {
 
 
 
@@ -2368,8 +2351,8 @@ var _default = exports["default"] = {
 
   DialogShortcutNode: class extends Shortcut {
     constructor(text, content, lineNo) {
-      let hashtags = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-      let conditionalExpression = arguments.length > 4 ? arguments[4] : undefined;
+      var hashtags = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+      var conditionalExpression = arguments.length > 4 ? arguments[4] : undefined;
       super();
       this.type = 'DialogShortcutNode';
       this.text = text;
@@ -2416,7 +2399,7 @@ var _default = exports["default"] = {
   // /////////////// Command Nodes
   GenericCommandNode: class extends Command {
     constructor(command, lineNo) {
-      let hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      var hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
       super();
       this.type = 'GenericCommandNode';
       this.command = command;
@@ -2440,7 +2423,7 @@ var _default = exports["default"] = {
   // /////////////// Contents Nodes
   TextNode: class extends Text {
     constructor(text, lineNo) {
-      let hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      var hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
       super();
       this.type = 'TextNode';
       this.text = text;
@@ -2450,7 +2433,7 @@ var _default = exports["default"] = {
   },
   EscapedCharacterNode: class extends Text {
     constructor(text, lineNo) {
-      let hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      var hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
       super();
       this.type = 'EscapedCharacterNode';
       this.text = text;
@@ -2638,7 +2621,7 @@ var _default = exports["default"] = {
 
   FunctionCallNode: class extends FunctionCall {
     constructor(functionName, args, lineNo) {
-      let hashtags = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
+      var hashtags = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
       super();
       this.type = 'FunctionCallNode';
       this.functionName = functionName;
@@ -2650,7 +2633,7 @@ var _default = exports["default"] = {
   // /////////////// Inline Expression
   InlineExpressionNode: class extends Expression {
     constructor(expression, lineNo) {
-      let hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+      var hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
       super();
       this.type = 'InlineExpressionNode';
       this.expression = expression;
@@ -2661,10 +2644,10 @@ var _default = exports["default"] = {
 };
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 321:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 321
+(module, exports, __webpack_require__) {
 
 
 
@@ -2675,7 +2658,7 @@ exports["default"] = void 0;
 var _nodes = _interopRequireDefault(__webpack_require__(33));
 var _lexer = _interopRequireDefault(__webpack_require__(101));
 var _compiledParser = __webpack_require__(293);
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 _compiledParser.parser.lexer = new _lexer.default();
 _compiledParser.parser.yy = _nodes.default;
 _compiledParser.parser.yy.declarations = {};
@@ -2685,7 +2668,7 @@ _compiledParser.parser.yy.parseError = function parseError(e) {
 _compiledParser.parser.yy.registerDeclaration = function registerDeclaration(variableName, expression, explicitType) {
   if (!this.areDeclarationsHandled) {
     if (this.declarations[variableName]) {
-      throw new Error(`Duplicate declaration found for variable: ${variableName}`);
+      throw new Error("Duplicate declaration found for variable: ".concat(variableName));
     }
     this.declarations[variableName] = {
       variableName,
@@ -2697,10 +2680,10 @@ _compiledParser.parser.yy.registerDeclaration = function registerDeclaration(var
 var _default = exports["default"] = _compiledParser.parser;
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 528:
-/***/ ((module, exports) => {
+/***/ 528
+(module, exports) {
 
 
 
@@ -2746,9 +2729,9 @@ class OptionResult extends Result {
    * @param {object} [metadata] the parent yarn data
    */
   constructor(text) {
-    let isAvailable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-    let hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    let metadata = arguments.length > 3 ? arguments[3] : undefined;
+    var isAvailable = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var hashtags = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var metadata = arguments.length > 3 ? arguments[3] : undefined;
     super();
     this.text = text;
     this.isAvailable = isAvailable;
@@ -2770,9 +2753,9 @@ class OptionsResult extends Result {
     this.metadata = metadata;
   }
   select() {
-    let index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+    var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
     if (index < 0 || index >= this.options.length) {
-      throw new Error(`Cannot select option #${index}, there are ${this.options.length} options`);
+      throw new Error("Cannot select option #".concat(index, ", there are ").concat(this.options.length, " options"));
     }
     this.selected = index;
   }
@@ -2785,10 +2768,10 @@ var _default = exports["default"] = {
 };
 module.exports = exports.default;
 
-/***/ }),
+/***/ },
 
-/***/ 458:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ 458
+(module, exports, __webpack_require__) {
 
 
 
@@ -2801,8 +2784,49 @@ var _results = _interopRequireDefault(__webpack_require__(528));
 var _defaultVariableStorage = _interopRequireDefault(__webpack_require__(696));
 var _convertYarnToJs = _interopRequireDefault(__webpack_require__(442));
 var _nodes = _interopRequireDefault(__webpack_require__(33));
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const nodeTypes = _nodes.default.types;
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, e) { if ("object" != typeof t || !t) return t; var r; if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) { var i = r.call(t, e || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === e ? String : Number)(t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+var nodeTypes = _nodes.default.types;
+
+// Entry types of a position's path (see the getPosition() of the generator returned by run()).
+//  'choice': an option list. value = option entered, or -1 to pass over the list
+//  'if':     an if/elseif/else statement. value = block entered (0 = the "if",
+//            1 = the next elseif/else, ...), or -1 to pass over the statement
+//  'text':   always the last entry. value = number of displayed text lines to
+//            pass in the current block before the line (or option list) that
+//            was being displayed.
+var PATH_CHOICE = 'choice';
+var PATH_IF = 'if';
+var PATH_TEXT = 'text';
+var isTextNode = node => {
+  return node instanceof nodeTypes.Text || node instanceof nodeTypes.Expression;
+};
+var isBranching = node => {
+  return node instanceof nodeTypes.Conditional || node instanceof nodeTypes.Shortcut;
+};
+var isEndOfFlow = node => {
+  return node instanceof _nodes.default.JumpCommandNode || node instanceof _nodes.default.StopCommandNode;
+};
+// Text and inline expressions on the same source line make up ONE displayed line.
+var continuesTextRun = (node, nextNode) => {
+  return !!nextNode && node.lineNum === nextNode.lineNum && isTextNode(nextNode);
+};
+var describeNode = node => {
+  if (node instanceof nodeTypes.Conditional) return 'an "if" statement';
+  if (node instanceof nodeTypes.Shortcut) return 'an option list';
+  if (isTextNode(node)) return 'a text line';
+  return 'a statement';
+};
 class Runner {
   constructor() {
     this.noEscape = false;
@@ -2810,6 +2834,10 @@ class Runner {
     this.variables = new _defaultVariableStorage.default();
     this.functions = {};
     this.visited = {};
+    // Free for the software using this library to change. It is stored in saved
+    // positions, and a warning is logged if run() gets a position saved under a
+    // different value.
+    this.gameVersion = 1;
     this.registerFunction('visited', args => {
       return !!this.visited[args[0]];
     });
@@ -2823,7 +2851,7 @@ class Runner {
     if (!dialogue) {
       throw new Error('No dialogue supplied');
     }
-    let nodes;
+    var nodes;
     if (typeof dialogue === 'string') {
       nodes = (0, _convertYarnToJs.default)(dialogue);
     } else {
@@ -2831,15 +2859,15 @@ class Runner {
     }
     nodes.forEach(node => {
       if (!node.title) {
-        throw new Error(`Node needs a title: ${JSON.stringify(node)}`);
+        throw new Error("Node needs a title: ".concat(JSON.stringify(node)));
       } else if (node.title.split('.').length > 1) {
-        throw new Error(`Node title cannot contain a dot: ${node.title}`);
+        throw new Error("Node title cannot contain a dot: ".concat(node.title));
       }
       if (!node.body) {
-        throw new Error(`Node needs a body: ${JSON.stringify(node)}`);
+        throw new Error("Node needs a body: ".concat(JSON.stringify(node)));
       }
       if (this.yarnNodes[node.title]) {
-        throw new Error(`Duplicate node title: ${node.title}`);
+        throw new Error("Duplicate node title: ".concat(node.title));
       }
       this.yarnNodes[node.title] = node;
     });
@@ -2867,30 +2895,31 @@ class Runner {
    * @param {any[]} yarn dialogue as string or array
    */
   handleDeclarations(nodes) {
-    const exampleValues = {
+    var exampleValues = {
       Number: 0,
       String: '',
       Boolean: false
     };
-    const allLines = nodes.reduce((acc, node) => {
-      const nodeLines = node.body.split(/\r?\n+/);
+    var allLines = nodes.reduce((acc, node) => {
+      var nodeLines = node.body.split(/\r?\n+/);
       return [...acc, ...nodeLines];
     }, []);
-    const declareLines = allLines.reduce((acc, line) => {
-      const match = line.match(/^<<declare .+>>/);
+    var declareLines = allLines.reduce((acc, line) => {
+      var match = line.match(/^<<declare .+>>/);
       return match ? [...acc, line] : acc;
     }, []);
     if (declareLines.length) {
       _parser.default.parse(declareLines.join('\n'));
     }
     Object.entries(_parser.default.yy.declarations).forEach(_ref => {
-      let [variableName, {
-        expression,
-        explicitType
-      }] = _ref;
-      const value = this.evaluateExpressionOrLiteral(expression);
+      var _ref2 = _slicedToArray(_ref, 2),
+        variableName = _ref2[0],
+        _ref2$ = _ref2[1],
+        expression = _ref2$.expression,
+        explicitType = _ref2$.explicitType;
+      var value = this.evaluateExpressionOrLiteral(expression);
       if (explicitType && typeof value !== typeof exampleValues[explicitType]) {
-        throw new Error(`Cannot declare value ${value} as type ${explicitType} for variable ${variableName}`);
+        throw new Error("Cannot declare value ".concat(value, " as type ").concat(explicitType, " for variable ").concat(variableName));
       }
       if (!this.variables.get(variableName)) {
         this.variables.set(variableName, value);
@@ -2905,27 +2934,271 @@ class Runner {
   }
 
   /**
-   * Generator to return each sequential dialog result starting from the given node
-   * @param {string} [startNode] - The name of the yarn node to begin at
+   * Generator to return each sequential dialog result.
+   *
+   * Takes either the name of a yarn node to start at, or a position object
+   * (see getPosition(), below) to resume from exactly where that position was
+   * saved.
+   * Resuming executes, evaluates and yields NOTHING until it reaches the saved
+   * position: variables, functions etc. are left exactly as they are. The
+   * saved line (or option list) is then yielded again as the first result.
+   *
+   * The returned generator has a getPosition() method of its own, so any
+   * number of generators can run at once, each knowing where it is.
+   * (Variables and functions are shared by all generators of this runner.)
+   *
+   * A malformed position object throws immediately. A position that doesn't
+   * match the loaded script (the script changed since the save) throws on the
+   * first next().
+   *
+   * @param {string|object} startPosition - A node name, or a position object
+   *   of the form { node, gameVersion, path }
    */
-  *run(startNode) {
-    let jumpTo = startNode;
-    while (jumpTo) {
-      const yarnNode = this.yarnNodes[jumpTo];
-      if (yarnNode === undefined) {
-        throw new Error(`Node "${startNode}" does not exist`);
-      }
-      this.visited[startNode] = true;
+  run(startPosition) {
+    var position = this.normalizePosition(startPosition);
+    // Each generator tracks its own position
+    var tracker = {
+      position: null
+    };
+    var generator = this.runFromPosition(position, tracker);
 
-      // Parse the entire node
-      const parserNodes = Array.from(_parser.default.parse(yarnNode.body));
-      const metadata = {
-        ...yarnNode
+    /**
+     * Describes where this generator is, so that run() can come back to it
+     * later. Only meaningful while the generator is paused on a text line or
+     * an option list. Returns null otherwise (before the first result, while
+     * paused on a command, or once the generator is finished).
+     *
+     * Returns { node, gameVersion, path } where path is an array of
+     * { type, value } entries, one for every if-statement and option list that
+     * comes before the paused line in its node, in order:
+     *   { type: 'choice', value: n }  enter option n of the option list
+     *   { type: 'if', value: n }      enter block n (0 = "if", 1 = next "elseif"/"else")
+     *   { type: 'choice' | 'if', value: -1 }   pass over the statement
+     *   { type: 'text', value: n }    always last: pass n displayed text lines,
+     *                                 then the paused line (or option list) is next
+     */
+    generator.getPosition = () => {
+      if (!tracker.position) {
+        return null;
+      }
+      return {
+        node: tracker.position.node,
+        gameVersion: this.gameVersion,
+        path: tracker.position.path.map(entry => {
+          return _objectSpread({}, entry);
+        })
       };
-      delete metadata.body;
-      const result = yield* this.evalNodes(parserNodes, metadata);
-      jumpTo = result && result.jump;
+    };
+    return generator;
+  }
+  runFromPosition(_ref3, tracker) {
+    var _this = this;
+    var startNode = _ref3.node,
+      path = _ref3.path,
+      isFreshStart = _ref3.isFreshStart;
+    return function* () {
+      var jumpTo = startNode;
+      // Only the first node is resumed mid-way. Jumps start nodes afresh
+      var resume = isFreshStart ? null : path;
+      tracker.position = null;
+      while (jumpTo) {
+        var yarnNode = _this.yarnNodes[jumpTo];
+        if (yarnNode === undefined) {
+          throw new Error("Node \"".concat(startNode, "\" does not exist"));
+        }
+        _this.visited[startNode] = true;
+
+        // Parse the entire node
+        var parserNodes = Array.from(_parser.default.parse(yarnNode.body));
+        var metadata = _objectSpread({}, yarnNode);
+        delete metadata.body;
+        var result = yield* _this.evalNodes(parserNodes, metadata, [], resume, tracker);
+        resume = null;
+        jumpTo = result && result.jump;
+      }
+      tracker.position = null;
+    }();
+  }
+
+  /**
+   * Turns the argument of run() into a validated position object.
+   * A plain node name means "start that node from the top", which is NOT the
+   * same as resuming at { type: 'text', value: 0 }: a resume skips any commands
+   * and assignments ahead of the first line, a fresh start runs them.
+   */
+  normalizePosition(input) {
+    if (typeof input === 'string') {
+      return {
+        node: input,
+        gameVersion: this.gameVersion,
+        path: [{
+          type: PATH_TEXT,
+          value: 0
+        }],
+        isFreshStart: true
+      };
     }
+    if (!input || typeof input !== 'object') {
+      throw new Error('run() needs a node name or a position object');
+    }
+    if (typeof input.node !== 'string' || !input.node) {
+      throw new Error('Position needs a "node" name');
+    }
+    if (!Array.isArray(input.path)) {
+      throw new Error('Position needs a "path" array');
+    }
+    if (input.gameVersion !== this.gameVersion) {
+      console.warn("Resuming a position saved under gameVersion ".concat(input.gameVersion, ", but this runner's gameVersion is ").concat(this.gameVersion, ". The script may have changed since the position was saved.")); // eslint-disable-line no-console
+    }
+
+    // Everything after the first 'text' entry is ignored
+    var path = [];
+    for (var i = 0; i < input.path.length; i += 1) {
+      var entry = input.path[i];
+      var isValidType = entry && [PATH_CHOICE, PATH_IF, PATH_TEXT].includes(entry.type);
+      if (!isValidType || !Number.isInteger(entry.value)) {
+        throw new Error("Position path entry ".concat(i, " is not a valid { type, value }: ").concat(JSON.stringify(entry)));
+      }
+      if (entry.value < (entry.type === PATH_TEXT ? 0 : -1)) {
+        throw new Error("Position path entry ".concat(i, " has an invalid value: ").concat(JSON.stringify(entry)));
+      }
+      path.push({
+        type: entry.type,
+        value: entry.value
+      });
+      if (entry.type === PATH_TEXT) {
+        break;
+      }
+    }
+    if (!path.length || path[path.length - 1].type !== PATH_TEXT) {
+      throw new Error("Position path must end with a \"".concat(PATH_TEXT, "\" entry"));
+    }
+    return {
+      node: input.node,
+      gameVersion: input.gameVersion,
+      path,
+      isFreshStart: false
+    };
+  }
+
+  /**
+   * Walks the statements of one block to the spot described by the first
+   * entries of "resume". Nothing is executed, evaluated or yielded on the way.
+   * Throws if the statements don't match the path.
+   *
+   * Returns {
+   *   index:   where to carry on from in this block,
+   *   entered: null, or { index, value } the branching statement to enter
+   *            instead of executing it (value = block / option number),
+   *   rest:    the path entries still to be followed inside what was entered,
+   *   passed:  the 'pass over' entries consumed in this block,
+   *   lines:   displayed lines already passed in this block since the last
+   *            branching statement,
+   * }
+   */
+  seekPosition(nodes, resume, metadata) {
+    var fail = reason => {
+      throw new Error("Cannot restore position in node \"".concat(metadata.title, "\": ").concat(reason, ". Has the script changed since it was saved?"));
+    };
+    var passed = [];
+    var idx = 0;
+    for (var e = 0; e < resume.length; e += 1) {
+      var entry = resume[e];
+      if (entry.type === PATH_TEXT) {
+        // Pass entry.value displayed lines (and any non-displayed statements)
+        var remaining = entry.value;
+        for (;;) {
+          while (idx < nodes.length && !isTextNode(nodes[idx]) && !isBranching(nodes[idx])) {
+            if (isEndOfFlow(nodes[idx])) {
+              fail('a jump or stop command comes before the saved line');
+            }
+            idx += 1;
+          }
+          if (remaining === 0) {
+            break;
+          }
+          if (idx >= nodes.length) {
+            fail("expected ".concat(entry.value, " text lines before the saved line, but only found ").concat(entry.value - remaining));
+          }
+          if (isBranching(nodes[idx])) {
+            fail("expected ".concat(entry.value, " text lines before the saved line, but ").concat(describeNode(nodes[idx]), " comes after ").concat(entry.value - remaining));
+          }
+          var runEnd = idx;
+          while (continuesTextRun(nodes[runEnd], nodes[runEnd + 1])) {
+            runEnd += 1;
+          }
+          idx = runEnd + 1;
+          remaining -= 1;
+        }
+        if (idx >= nodes.length) {
+          fail("there is nothing after the ".concat(entry.value, " text lines to resume at"));
+        }
+        if (nodes[idx] instanceof nodeTypes.Conditional) {
+          fail('expected a text line or option list to resume at, but found an "if" statement');
+        }
+        return {
+          index: idx,
+          entered: null,
+          rest: [],
+          passed,
+          lines: entry.value
+        };
+      }
+
+      // Branching entry: everything up to the next branching statement is skipped
+      var found = idx;
+      while (found < nodes.length && !isBranching(nodes[found])) {
+        if (isEndOfFlow(nodes[found])) {
+          fail('a jump or stop command comes before the saved position');
+        }
+        found += 1;
+      }
+      if (found >= nodes.length) {
+        fail("expected ".concat(entry.type === PATH_IF ? 'an "if" statement' : 'an option list', ", but reached the end of the block"));
+      }
+      var node = nodes[found];
+      var isIf = node instanceof nodeTypes.Conditional;
+      if (entry.type === PATH_IF !== isIf) {
+        fail("expected ".concat(entry.type === PATH_IF ? 'an "if" statement' : 'an option list', ", but found ").concat(describeNode(node)));
+      }
+      var end = found;
+      var size = void 0;
+      if (isIf) {
+        size = this.getConditionalBlocks(node).length;
+      } else {
+        while (nodes[end + 1] instanceof nodeTypes.Shortcut) {
+          end += 1;
+        }
+        size = end - found + 1;
+      }
+      if (entry.value === -1) {
+        passed.push({
+          type: entry.type,
+          value: -1
+        });
+        idx = end + 1;
+      } else {
+        if (entry.value >= size) {
+          fail("expected ".concat(isIf ? 'block' : 'option', " ").concat(entry.value, ", but the ").concat(isIf ? '"if" statement only has' : 'option list only has', " ").concat(size));
+        }
+        if (!isIf && !nodes[found + entry.value].content) {
+          fail("option ".concat(entry.value, " has no content to resume inside"));
+        }
+        return {
+          index: found,
+          entered: {
+            index: found,
+            value: entry.value
+          },
+          rest: resume.slice(e + 1),
+          passed,
+          lines: 0
+        };
+      }
+    }
+
+    // Unreachable: normalizePosition() guarantees a final 'text' entry
+    return fail('the path has no final "text" entry');
   }
 
   /**
@@ -2933,114 +3206,213 @@ class Runner {
    * the user. Calls itself recursively if that is required by nested nodes
    * @param {Node[]} nodes
    * @param {YarnNode[]} metadata
+   * @param {object[]} path - position path entries leading to this block
+   * @param {object[]} [resume] - position path entries to resume from in this block
+   * @param {object} [tracker] - receives the position of the generator as it yields
    */
-  *evalNodes(nodes, metadata) {
-    let shortcutNodes = [];
-    let textRun = '';
-    const filteredNodes = nodes.filter(Boolean);
+  evalNodes(nodes, metadata) {
+    var _this2 = this;
+    var path = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var resume = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+    var tracker = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {
+      position: null
+    };
+    return function* () {
+      var textRun = '';
+      var filteredNodes = nodes.filter(Boolean);
 
-    // Yield the individual user-visible results
-    // Need to accumulate all adjacent selectables
-    // into one list (hence some of the weirdness here)
-    for (let nodeIdx = 0; nodeIdx < filteredNodes.length; nodeIdx += 1) {
-      const node = filteredNodes[nodeIdx];
-      const nextNode = filteredNodes[nodeIdx + 1];
-
-      // Text and the output of Inline Expressions
-      // are combined to deliver a TextNode.
-      if (node instanceof nodeTypes.Text || node instanceof nodeTypes.Expression) {
-        textRun += this.evaluateExpressionOrLiteral(node).toString();
-        if (nextNode && node.lineNum === nextNode.lineNum && (nextNode instanceof nodeTypes.Text || nextNode instanceof nodeTypes.Expression)) {
-          // Same line, with another text equivalent to add to the
-          // text run further on in the loop, so don't yield.
-        } else {
-          yield new _results.default.TextResult(textRun, node.hashtags, metadata);
-          textRun = '';
-        }
-      } else if (node instanceof nodeTypes.Shortcut) {
-        shortcutNodes.push(node);
-        if (!(nextNode instanceof nodeTypes.Shortcut)) {
-          // Last shortcut in the series, so yield the shortcuts.
-          const result = yield* this.handleShortcuts(shortcutNodes, metadata);
-          if (result && (result.stop || result.jump)) {
-            return result;
-          }
-          shortcutNodes = [];
-        }
-      } else if (node instanceof nodeTypes.Assignment) {
-        this.evaluateAssignment(node);
-      } else if (node instanceof nodeTypes.Conditional) {
-        // Get the results of the conditional
-        const evalResult = this.evaluateConditional(node);
-        if (evalResult) {
-          // Run the remaining results
-          const result = yield* this.evalNodes(evalResult, metadata);
-          if (result && (result.stop || result.jump)) {
-            return result;
-          }
-        }
-      } else if (node instanceof _nodes.default.JumpCommandNode) {
-        // ignore the rest of this outer loop and
-        // tell parent loops to ignore following nodes.
-        // Recursive call here would cause stack overflow
-        return {
-          jump: node.destination
-        };
-      } else if (node instanceof _nodes.default.StopCommandNode) {
-        // ignore the rest of this outer loop and
-        // tell parent loops to ignore following nodes
-        return {
-          stop: true
-        };
-      } else {
-        const command = this.evaluateExpressionOrLiteral(node.command);
-        yield new _results.default.CommandResult(command, node.hashtags, metadata);
+      // Position bookkeeping: the branching statements already passed in this
+      // block, and the displayed lines passed since the last one
+      var levelPath = [];
+      var linesSinceBranch = 0;
+      var nodeIdx = 0;
+      var entered = null;
+      if (resume && resume.length) {
+        var seek = _this2.seekPosition(filteredNodes, resume, metadata);
+        nodeIdx = seek.index;
+        entered = seek.entered && _objectSpread(_objectSpread({}, seek.entered), {}, {
+          rest: seek.rest
+        });
+        levelPath.push(...seek.passed);
+        linesSinceBranch = seek.lines;
       }
-    }
-    return undefined;
+
+      // Yield the individual user-visible results
+      // Need to accumulate all adjacent selectables
+      // into one list (hence some of the weirdness here)
+      for (; nodeIdx < filteredNodes.length; nodeIdx += 1) {
+        var node = filteredNodes[nodeIdx];
+        var nextNode = filteredNodes[nodeIdx + 1];
+
+        // Text and the output of Inline Expressions
+        // are combined to deliver a TextNode.
+        if (isTextNode(node)) {
+          textRun += _this2.evaluateExpressionOrLiteral(node).toString();
+          if (continuesTextRun(node, nextNode)) {
+            // Same line, with another text equivalent to add to the
+            // text run further on in the loop, so don't yield.
+          } else {
+            tracker.position = {
+              node: metadata.title,
+              path: [...path, ...levelPath, {
+                type: PATH_TEXT,
+                value: linesSinceBranch
+              }]
+            };
+            yield new _results.default.TextResult(textRun, node.hashtags, metadata);
+            linesSinceBranch += 1;
+            textRun = '';
+          }
+        } else if (node instanceof nodeTypes.Shortcut) {
+          // Accumulate the whole series of shortcuts
+          var groupEnd = nodeIdx;
+          while (filteredNodes[groupEnd + 1] instanceof nodeTypes.Shortcut) {
+            groupEnd += 1;
+          }
+          var shortcutNodes = filteredNodes.slice(nodeIdx, groupEnd + 1);
+          var basePath = [...path, ...levelPath];
+          var result = void 0;
+          if (entered && entered.index === nodeIdx) {
+            // Resuming inside an option: the options aren't offered again and
+            // nothing about them is evaluated
+            var optionPath = [...basePath, {
+              type: PATH_CHOICE,
+              value: entered.value
+            }];
+            result = yield* _this2.evalNodes(shortcutNodes[entered.value].content, metadata, optionPath, entered.rest, tracker);
+            entered = null;
+          } else {
+            result = yield* _this2.handleShortcuts(shortcutNodes, metadata, basePath, linesSinceBranch, tracker);
+          }
+          if (result && (result.stop || result.jump)) {
+            return result;
+          }
+          levelPath.push({
+            type: PATH_CHOICE,
+            value: -1
+          });
+          linesSinceBranch = 0;
+          nodeIdx = groupEnd;
+        } else if (node instanceof nodeTypes.Assignment) {
+          _this2.evaluateAssignment(node);
+        } else if (node instanceof nodeTypes.Conditional) {
+          var chosen = void 0;
+          var chosenResume = null;
+          if (entered && entered.index === nodeIdx) {
+            // Resuming inside a block: the condition isn't evaluated again
+            chosen = {
+              index: entered.value,
+              statements: _this2.getConditionalBlocks(node)[entered.value]
+            };
+            chosenResume = entered.rest;
+            entered = null;
+          } else {
+            // Get the results of the conditional
+            chosen = _this2.evaluateConditionalBlock(node);
+          }
+          if (chosen) {
+            // Run the remaining results
+            var _result = yield* _this2.evalNodes(chosen.statements, metadata, [...path, ...levelPath, {
+              type: PATH_IF,
+              value: chosen.index
+            }], chosenResume, tracker);
+            if (_result && (_result.stop || _result.jump)) {
+              return _result;
+            }
+          }
+          levelPath.push({
+            type: PATH_IF,
+            value: -1
+          });
+          linesSinceBranch = 0;
+        } else if (node instanceof _nodes.default.JumpCommandNode) {
+          // ignore the rest of this outer loop and
+          // tell parent loops to ignore following nodes.
+          // Recursive call here would cause stack overflow
+          return {
+            jump: node.destination
+          };
+        } else if (node instanceof _nodes.default.StopCommandNode) {
+          // ignore the rest of this outer loop and
+          // tell parent loops to ignore following nodes
+          return {
+            stop: true
+          };
+        } else {
+          var command = _this2.evaluateExpressionOrLiteral(node.command);
+          // A position can't be saved while paused on a command
+          tracker.position = null;
+          yield new _results.default.CommandResult(command, node.hashtags, metadata);
+        }
+      }
+      return undefined;
+    }();
   }
 
   /**
    * yield a shortcut result then handle the subsequent selection
    * @param {any[]} selections
+   * @param {YarnNode[]} metadata
+   * @param {object[]} basePath - position path entries leading to this option list
+   * @param {number} lines - displayed lines passed since the last branching
+   *   statement in the current block
+   * @param {object} [tracker] - receives the position of the generator as it yields
    */
-  *handleShortcuts(selections, metadata) {
-    // Multiple options to choose from (or just a single shortcut)
-    // Tag any conditional dialog options that result to false,
-    // the consuming app does the actual filtering or whatever
-    const transformedSelections = selections.map(s => {
-      let isAvailable = true;
-      if (s.conditionalExpression && !this.evaluateExpressionOrLiteral(s.conditionalExpression)) {
-        isAvailable = false;
-      }
-      const text = this.evaluateExpressionOrLiteral(s.text);
-      return Object.assign(s, {
-        isAvailable,
-        text
+  handleShortcuts(selections, metadata) {
+    var _this3 = this;
+    var basePath = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var lines = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var tracker = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {
+      position: null
+    };
+    return function* () {
+      // Multiple options to choose from (or just a single shortcut)
+      // Tag any conditional dialog options that result to false,
+      // the consuming app does the actual filtering or whatever
+      var transformedSelections = selections.map(s => {
+        var isAvailable = true;
+        if (s.conditionalExpression && !_this3.evaluateExpressionOrLiteral(s.conditionalExpression)) {
+          isAvailable = false;
+        }
+        var text = _this3.evaluateExpressionOrLiteral(s.text);
+        return Object.assign(s, {
+          isAvailable,
+          text
+        });
       });
-    });
-    const optionsResult = new _results.default.OptionsResult(transformedSelections, metadata);
-    yield optionsResult;
-    if (typeof optionsResult.selected === 'number') {
-      const selectedOption = transformedSelections[optionsResult.selected];
-      if (selectedOption.content) {
-        // Recursively go through the nodes nested within
-        return yield* this.evalNodes(selectedOption.content, metadata);
+      var optionsResult = new _results.default.OptionsResult(transformedSelections, metadata);
+      tracker.position = {
+        node: metadata.title,
+        path: [...basePath, {
+          type: PATH_TEXT,
+          value: lines
+        }]
+      };
+      yield optionsResult;
+      if (typeof optionsResult.selected === 'number') {
+        var selectedOption = transformedSelections[optionsResult.selected];
+        if (selectedOption.content) {
+          // Recursively go through the nodes nested within
+          return yield* _this3.evalNodes(selectedOption.content, metadata, [...basePath, {
+            type: PATH_CHOICE,
+            value: optionsResult.selected
+          }], null, tracker);
+        }
+      } else {
+        throw new Error('No option selected before resuming dialogue');
       }
-    } else {
-      throw new Error('No option selected before resuming dialogue');
-    }
-    return undefined;
+      return undefined;
+    }();
   }
 
   /**
    * Evaluates the given assignment node
    */
   evaluateAssignment(node) {
-    const result = this.evaluateExpressionOrLiteral(node.expression);
-    const oldValue = this.variables.get(node.variableName);
+    var result = this.evaluateExpressionOrLiteral(node.expression);
+    var oldValue = this.variables.get(node.variableName);
     if (oldValue && typeof oldValue !== typeof result) {
-      throw new Error(`Variable ${node.variableName} is already type ${typeof oldValue}; cannot set equal to ${result} of type ${typeof result}`);
+      throw new Error("Variable ".concat(node.variableName, " is already type ").concat(typeof oldValue, "; cannot set equal to ").concat(result, " of type ").concat(typeof result));
     }
     this.variables.set(node.variableName, result);
   }
@@ -3050,28 +3422,63 @@ class Runner {
    * Returns the statements to be run as a result of it (if any)
    */
   evaluateConditional(node) {
+    var block = this.evaluateConditionalBlock(node);
+    return block ? block.statements : null;
+  }
+
+  /**
+   * Evaluates the given conditional node
+   * Returns the block to be run as a result of it, as { index, statements },
+   * or null if no block is to be run. "index" is the block's number within the
+   * statement: 0 for the "if" block, 1 for the next "elseif"/"else", and so on
+   */
+  evaluateConditionalBlock(node) {
+    var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
     if (node.type === 'IfNode') {
       if (this.evaluateExpressionOrLiteral(node.expression)) {
-        return node.statement;
+        return {
+          index,
+          statements: node.statement
+        };
       }
     } else if (node.type === 'IfElseNode' || node.type === 'ElseIfNode') {
       if (this.evaluateExpressionOrLiteral(node.expression)) {
-        return node.statement;
+        return {
+          index,
+          statements: node.statement
+        };
       }
       if (node.elseStatement) {
-        return this.evaluateConditional(node.elseStatement);
+        return this.evaluateConditionalBlock(node.elseStatement, index + 1);
       }
     } else {
       // ElseNode
-      return node.statement;
+      return {
+        index,
+        statements: node.statement
+      };
     }
     return null;
+  }
+
+  /**
+   * Returns the statements of every block of the given conditional node, in
+   * order, without evaluating anything
+   */
+  getConditionalBlocks(node) {
+    var blocks = [];
+    var current = node;
+    while (current) {
+      blocks.push(current.statement);
+      current = current.elseStatement;
+    }
+    return blocks;
   }
   evaluateFunctionCall(node) {
     if (this.functions[node.functionName]) {
       return this.functions[node.functionName](...node.args.map(this.evaluateExpressionOrLiteral, this));
     }
-    throw new Error(`Function "${node.functionName}" not found`);
+    throw new Error("Function \"".concat(node.functionName, "\" not found"));
   }
 
   /**
@@ -3085,7 +3492,7 @@ class Runner {
         return acc + this.evaluateExpressionOrLiteral(n).toString();
       }, '');
     }
-    const nodeHandlers = {
+    var nodeHandlers = {
       UnaryMinusExpressionNode: a => {
         return -a;
       },
@@ -3148,7 +3555,7 @@ class Runner {
         return parseFloat(a.numericLiteral);
       },
       StringLiteralNode: a => {
-        return `${a.stringLiteral}`;
+        return "".concat(a.stringLiteral);
       },
       BooleanLiteralNode: a => {
         return a.booleanLiteral === 'true';
@@ -3163,9 +3570,9 @@ class Runner {
         return a;
       }
     };
-    const handler = nodeHandlers[node.type];
+    var handler = nodeHandlers[node.type];
     if (!handler) {
-      throw new Error(`node type not recognized: ${node.type}`);
+      throw new Error("node type not recognized: ".concat(node.type));
     }
     return handler(node instanceof nodeTypes.Expression ? this.evaluateExpressionOrLiteral(node.expression || node.expression1) : node, node.expression2 ? this.evaluateExpressionOrLiteral(node.expression2) : node);
   }
@@ -3178,22 +3585,22 @@ var _default = exports["default"] = {
 };
 module.exports = exports.default;
 
-/***/ })
+/***/ }
 
 /******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
+/******/ 	const __webpack_module_cache__ = {};
 /******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		const cachedModule = __webpack_module_cache__[moduleId];
 /******/ 		if (cachedModule !== undefined) {
 /******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 		const module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
@@ -3211,7 +3618,7 @@ module.exports = exports.default;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(954);
+/******/ 	let __webpack_exports__ = __webpack_require__(954);
 /******/ 	
 /******/ 	return __webpack_exports__;
 /******/ })()
