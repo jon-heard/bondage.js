@@ -15,7 +15,7 @@ const Tokens = {
   EndOfInput:           null,
 
   // Literals in ("<<commands>>")
-  Number:               /-?[0-9]+(\.[0-9+])?/,
+  Number:               /-?[0-9]+(\.[0-9]+)?/,
   String:               /"([^"\\]*(?:\\.[^"\\]*)*)"/,
 
   // Command syntax ("<<foo>>")
